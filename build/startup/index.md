@@ -11,19 +11,19 @@ nav_order: 5
 ---
 
 <link  rel="stylesheet"  href="style.css">
-<script  src="buttons.js"> </script>
+<script src="button.js"></script>
 # Please select your printer model to start
 <br>
 
 <div class="btn-group" role="group" aria-label="Basic example">
 
-  <button type="button" class="btn btn-danger border margin-right3" onclick="location.href = './v0initial.html';"><img src="./images/v0render.png" width="250px" /><br>Voron V0</button>
-  <button type="button" class="btn btn-danger border" onclick="location.href = './v2initial.html';"><img src="./images/v2render.png" width="250px"/><br>Voron V2</button>
+  <button type="button" class="btn btn-danger border margin-right3" onclick="location.href = './startup.html?model=v0&step=0';"><img src="./images/v0render.png" width="250px" /><br>Voron V0</button>
+  <button type="button" class="btn btn-danger border" onclick="location.href = './startup.html?model=v2&step=0';"><img src="./images/v2render.png" width="250px"/><br>Voron V2</button>
 </div>
 <div class="spacer"></div>
 <div class="btn-group" role="group" aria-label="Basic example">
-  <button type="button" class="btn btn-danger margin-right3" onclick="location.href = './v1initial.html';"><img src="./images/v1render.png" width="250px" /><br>Voron V1/Trident</button>
-  <button type="button" class="btn btn-danger" onclick="location.href = './vswinitial.html';"><img src="./images/vswrender.png" width="250px"/><br>Voron Switchwire</button>
+  <button type="button" class="btn btn-danger margin-right3" onclick="location.href = './startup.html?model=v1&step=0';"><img src="./images/v1render.png" width="250px" /><br>Voron V1/Trident</button>
+  <button type="button" class="btn btn-danger" onclick="location.href = './startup.html?model=vsw&step=0';"><img src="./images/vswrender.png" width="250px"/><br>Voron Switchwire</button>
 </div>
 
 <style>
