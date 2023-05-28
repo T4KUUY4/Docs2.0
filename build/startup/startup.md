@@ -1,7 +1,7 @@
 <link  rel="stylesheet"  href="style.css">
 <script src="buttons.js"> </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-<body onload="checkstatus()">
+<body onload="checkstatus(), testscript()">
 
 
 <div class="defaulthide" id="progressdiv">
@@ -40,93 +40,8 @@ Please follow each step closely and once ready, click the "I am done, let's move
 <button type="button" class="text-center btn btn-danger margin-right2 btn-spacing-mobile" id="button-start" onclick="start()">I am ready, let´s go</button>
 
 
-## Table of Contents:
-
-<div class="defaulthide" id="v0chapter" markdown="1">
-
-* [Verify Temperature](?model=v0&step=2)
-* [Verify Heaters](?model=v0&step=3)  
-* [Motor Checks](?model=v0&step=4)  
-* [Endstop Checks](?model=v0&step=5)
-* [Homing checks](?model=v0&step=6)
-* [Z Endstop](?model=v0&step=7)  
-* [PID Tuning](?model=v0&step=8)  
-* [Bed Leveling](?model=v0&step=9)
-* [Z Offset](?model=v0&step=10)
-* [Finish Line](?model=v0&step=11)
-
-</div>
-
-<div class="defaulthide" id="v1chapter" markdown="1">
 
 
- * [Verify Temperature](?model=v1&step=2) 
- * [Verify Heaters](?model=v1&step=3)   
- * [Motor Checks](?model=v1&step=4)   
- * [Endstop Checks](?model=v1&step=5) 
- * [Homing Checks](?model=v1&step=6) 
- * [Bed Locating](?model=v1&step=7)   
- * [00 Point](?model=v1&step=8)   
- * [Z Endstop](?model=v1&step=9) 
- * [Probe Checks](?model=v1&step=10) 
- * [PID Tuning](?model=v1&step=11) 
- * [Bed Leveling](?model=v1&step=12) 
- * [Z Offset](?model=v1&step=13)   
- * [Finish Line](?model=v1&step=14)   
-
-
-</div>
-
-<div class="defaulthide" id="v2chapter" markdown="1">
-
-* [Verify Temperature](?model=v2&step=2) 
- * [Verify Heaters](?model=v2&step=3)   
- * [Motor Checks](?model=v2&step=4)   
- * [Endstop Checks](?model=v2&step=5) 
- * [Homing Checks](?model=v2&step=6) 
- * [Bed Locating](?model=v2&step=7)   
- * [00 Point](?model=v2&step=8)   
- * [Z Endstop](?model=v2&step=9) 
- * [Probe Checks](?model=v2&step=10) 
- * [PID Tuning](?model=v2&step=11) 
- * [Bed Leveling](?model=v2&step=12) 
- * [Z Offset](?model=v2&step=13)   
- * [Finish Line](?model=v2&step=14)   
-
-</div>
-
-<div class="defaulthide" id="vswchapter" markdown="1">
-
-<div class="whitetext" markdown="1">
-* [Verify Temperature](?model=v2&step=2)
-* [Verify Heaters](?model=v2&step=3)
-* [Motor Checks](?model=v2&step=4)
-* [Endstop Checks](?model=v2&step=5)
-
-</div>
-
-
-| Title | Jump to |
-|--|--|
-| Verify Temperature | [Jump](?model=v2&step=2) | 
-| Verify Heaters | [Jump](?model=v2&step=3)   | 
-| Motor Checks   | [Jump](?model=v2&step=4)   | 
-| Endstop Checks | [Jump](?model=v2&step=5) | 
-| Homing Checks | [Jump](?model=v2&step=6) | 
-| Bed Locating | [Jump](?model=v2&step=7)   | 
-| 00 Point | [Jump](?model=v2&step=8)   | 
-| Z Endstop | [Jump](?model=v2&step=9) | 
-| Probe Checks | [Jump](?model=v2&step=10) | 
-| PID Tuning | [Jump](?model=v2&step=11) | 
-| Bed Leveling | [Jump](?model=v2&step=12) | 
-| Z Offset | [Jump](?model=v2&step=13)   | 
-| Finish Line   | [Jump](?model=v2&step=14)   | 
-
-</div>
-
-<div class="defaulthide" id="vswchapter" markdown="1">
-
-</div>
 </div> 
 
 
@@ -195,7 +110,7 @@ Verify that the temperature of the nozzle and bed are present and **not increasi
 ## Verify heaters
  
 
-Navigate to the temperature graph and type in 50 followed by enter in the "Tool" temperature target feild. The extruder temperature in the graph should start to increase (within about 10 seconds or so). Then go to the "Tool" temperature drop-down box and select "Off". After several minutes the temperature should start to return to its initial room temperature value. If the temperature does not increase, then verify the `heater_pin` setting in the config.
+Navigate to the temperature graph and type in 50 followed by enter in the "Tool" temperature target field. The extruder temperature in the graph should start to increase (within about 10 seconds or so). Then go to the "Tool" temperature drop-down box and select "Off". After several minutes the temperature should start to return to its initial room temperature value. If the temperature does not increase, then verify the `heater_pin` setting in the config.
 
 Perform the above steps again with the bed.
 
@@ -641,28 +556,50 @@ Once the Z endstop is fixed into position the base plate should be adjusted so t
 <!-- -->
 
 
-<div class="defaulthide" id="xyendstop" markdown="1">
 
+<div  class="defaulthide"  id="xyendstop"  markdown="1">
 
 ## Endstop Check
 
-Make sure that none of the X, Y, or Z endstops are being pressed.  Then send a `QUERY_ENDSTOPS` command.  The terminal window should respond with the following:
+Slowly move the toolhead to the center, then send the `QUERY_ENDSTOPS` command. The terminal window should respond with the following:
+
 
 ```
 Send: QUERY_ENDSTOPS
+
 Recv: x:open y:open z:open
 ```
 
-If any of them say "triggered" instead of "open", double-check to make sure none of them are pressed.  Next, manually press the X endstop switch, send the `QUERY_ENDSTOPS` command again, and make sure that the X endstop says "triggered" and the Y and Z endstops stay open.  Repeat with the Y and Z endstops.
+If any of them say "triggered" instead of "open", double-check to make sure none of them are pressed. Next, move the toolhead all the way to the right until you hear a clicking sound, then send the `QUERY_ENDSTOPS` command again. <br>
 
-If one of the endstops acts backwards (reading "TRIGGERED" when open and vice-versa), go into the printer configuration file (typically printer.cfg) and add or remove the ! in front of the pin identifier. For example, if the X endstop was inverted, add a ! in front of the pin number as follows:
+Make sure that the X endstop says "triggered" and the Y and Z endstops stay open.
 
-`endstop_pin: P1.28` -> `endstop_pin: !P1.28`
+Move the toolhead back to center and repeat with the Y endstop by moving the gantry all the way to the back.
+
+To check the Z endstop, manually press the z endstop until you hear a clicking sound. Check with `QUERY_ENDSTOPS` if the endstop works.
+
+
+<details  markdown="1">
+
+<summary>Troubleshooting</summary>
+
+* <p markdown="1">If one of the endstops acts backwards (reading "TRIGGERED" when open and vice-versa), go into the printer configuration file (typically printer.cfg) and add or remove the ! in front of the pin identifier. 
+For example, if the X endstop was inverted, add a ! in front of the pin number as follows: 
+<br>`endstop_pin: P1.28` -> `endstop_pin: !P1.28` </p>
+
+* <p>If the endstop cannot be reached with the toolhead, make sure that you don't have any rubber rail stoppers left on the rail. </p>
+
+* <p>If there are no rubber rail stoppers in place and you still can't trigger the endstop, make sure that your gantry is deracked. <a  href="https://www.youtube.com/watch?v=cOn6u9kXvy0">Gantry deracking</a>  </p>
+
+</details>
 
 <br>
 
+  
+  
 
 </div>
+
 <!-- -->
 <div class="defaulthide" id="pid" markdown="1">
 ## PID Tune Bed & Hotend
@@ -769,13 +706,7 @@ Typical `rotation_distance` values should be around 22.6789511 for Afterburner, 
 
 
 
-
-
-
-
-
-
-
+ 
 
 
 
@@ -811,9 +742,12 @@ Typical `rotation_distance` values should be around 22.6789511 for Afterburner, 
 </body> 
 
 
+
+
+
 <style>
 /* mobile */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 768px) { 
   /* For mobile phones: */
   [class*="btn-group"] {
     display: flex;

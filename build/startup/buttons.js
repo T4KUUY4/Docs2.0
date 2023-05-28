@@ -8,18 +8,23 @@ let lastpage = currentstep - 1;
 
 // model pages
     // ARRAY for pages per model
-    const v0pages = new Array("0", "info", "verifytemp", "verifyheater", "v0motor", "xyendstop", "v0homing", "v0endstop", "pid", "v0bedscrews", "initial", "finish");
-    const v1pages = new Array("0", "info", "verifytemp", "verifyheater", "v1motor", "xyendstop", "v1homing",  "bedlocating" ,"point00", "zendstop",  "probecheck", "pid", "ztilt", "initial", "finish" );
-    const v2pages = new Array("0", "info", "verifytemp", "verifyheater", "v2motor", "xyendstop", "v2homing", "bedlocating", "point00", "zendstop", "probecheck", "pid", "qgl", "initial", "finish" );
-    const vswpages = new Array("0", "info", "verifytemp", "verifyheater", "vswmotor", "5");
-   
 
+
+      const v0pages = new Array("0", "info", "verifytemp", "verifyheater", "v0motor", "xyendstop", "v0homing", "v0endstop", "pid", "v0bedscrews", "initial", "finish");
+      const v1pages = new Array("0", "info", "verifytemp", "verifyheater", "v1motor", "xyendstop", "v1homing",  "bedlocating" ,"point00", "zendstop",  "probecheck", "pid", "ztilt", "initial", "finish" );
+      const v2pages = new Array("0", "info", "verifytemp", "verifyheater", "v2motor", "xyendstop", "v2homing", "bedlocating", "point00", "zendstop", "probecheck", "pid", "qgl", "initial", "finish" );
+      const vswpages = new Array("0", "info", "verifytemp", "verifyheater", "vswmotor", "5");
+   
+      const v0pagename = new Array("Start", "Information", "Verify Temperatures", "Verify Heaters", "Motor Checks", "XY Endstop Check", "Homing Check", "Z-Endstop", "PID Tuning", "Bed Leveling", "Initial Setup", "Finish Line" );
+      const v2pagename = new Array("Start", "Information", "Verify Temperatures", "Verify Heaters", "Motor Checks", "XY Endstop Check", "Homing Check", "Bed Locating", "0 Point", "Z Endstop", "Probe Check", "PID Tuning", "Quad Gantry Level", "Initial Setup", "Finish Line" );
+      const v1pagename = new Array("Start", "Information", "Verify Temperatures", "Verify Heaters", "Motor Checks", "XY Endstop Check", "Homing Check", "Bed Locating", "0 Point", "Z Endstop", "Probe Check", "PID Tuning", "Z-Tilt", "Initial Setup", "Finish Line" );
+      const vswpagename = new Array("Start", "Information", "Verify Temperatures", "Verify Heaters", "Motor Checks", "XY Endstop Check", "Homing Check", "Z-Endstop", "PID Tuning", "Bed Screw", "Initial Setup", "Finish Line" );
     
    
 
 //check current url params and act accordingly
 function checkstatus() { 
-  
+  sidebar();
 
 
   if (interfaceparam == "mainsail") {
@@ -56,23 +61,24 @@ function checkstatus() {
   if (modelparam == "v0") {
     model = v0pages;
     printermodel = "V0";
-    document.getElementById("v0chapter").style.display="block";
+    
     maxprogress = v0pages.length;
   } else if(modelparam == "v1") {
     model = v1pages; 
     printermodel = "V1/Trident";
-    document.getElementById("v1chapter").style.display="block";
+    
     maxprogress = v1pages.length;
   } else if(modelparam == "v2") {
     model = v2pages;
     printermodel = "V2";
-    document.getElementById("v2chapter").style.display="block";
+    
+    
     maxprogress = v2pages.length;
   } else if(modelparam == "vsw") {
     model = vswpages;
     printermodel = "Switchwire";
     maxprogress = vswpages.length;
-    document.getElementById("vswchapter").style.display="block";
+    
   }
 
   //Set printermodel
@@ -152,4 +158,34 @@ function prevpage() {
 
 }
 
+
+
+function sidebar () {
+  $( ".nav-list" ).empty();
+  var step = 0;
+
+  $( ".nav-list" ).append("<li><a href="+"https://docs.vorondesign.com/"+">Back to the Docs</a></li><br>");
+  $( ".nav-list" ).append("<h2 class=" + "'" + "whitetext" +"'" + "color=red;>Table of Contents:</h2>");
+
+  if (modelparam == "v0") 
+  $.each(v0pages, function(key, page){
+      $( ".nav-list" ).append("<li>"+"<a href="+"?model=v0&step="+step+""+">"+v0pagename[step]+"</a>"+"</li>");
+      step++
+  }) 
+  else if (modelparam == "v2")
+  $.each(v2pages, function(key, page){
+    $( ".nav-list" ).append("<li>"+"<a href="+"?model=v2&step="+step+""+">"+v2pagename[step]+"</a>"+"</li>");
+    step++
+  }) 
+  else if (modelparam == "v1") 
+  $.each(v1pages, function(key, page){
+    $( ".nav-list" ).append("<li>"+"<a href="+"?model=v1&step="+step+""+">"+v1pagename[step]+"</a>"+"</li>");
+    step++
+  }) 
+  else if (modelparam == "vsw") 
+  $.each(vswpages, function(key, page){
+    $( ".nav-list" ).append("<li>"+"<a href="+"?model=vsw&step="+step+""+">"+vswpagename[step]+"</a>"+"</li>");
+    step++
+  })
+}
 
