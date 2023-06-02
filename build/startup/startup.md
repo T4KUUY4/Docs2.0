@@ -97,11 +97,11 @@ Start by verifying that temperatures are being properly reported. Navigate to th
 Verify that the temperature of the nozzle and bed are present and **not increasing**. If it is increasing, remove power from the printer. If the temperatures are not accurate, review the `sensor_type` and `sensor_pin` settings for the extruder and/or bed.
 <br>
 
-<details markdown="1">
+<details>
   <summary>Troubleshooting</summary>
     <p>If your Thermistors are not working as they should (Rapidly changing temperatures for example). Double check all your crimps and wires.  </p>
     <p>A Multimeter in continuity mode is a useful tool for this</p>
-    <p>You can also download your klipper log file and upload it to [Klippylyzer](https://klippylyzer.github.io/)</p>
+    <p markdown="1">You can also download your klipper log file and upload it to [Klippylyzer](https://klippylyzer.github.io/)</p>
 </details>
 <br>
 </div>

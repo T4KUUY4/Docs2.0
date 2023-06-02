@@ -1,26 +1,43 @@
-let params = new URLSearchParams(window.location.search);
-let modelparam = params.get('model');
-let interfaceparam = params.get("interface");
-var currentstep = parseInt(params.get("step")); 
-let lastpage = currentstep - 1;
-//Custom Variables
+//Editing Notes: 
+// To edit (change, remove or add) a page, edit the corresponding arrays below. The Array starts at page 0 and the docs page will always display them in order (0, info, verifytemp,...). 
+// To Add a new third page, put your new Page ID after "info". 
+// If you add a page or remove one, also add/remove the pagename in the array below for the corresponding model. 
 
 
-// model pages
-    // ARRAY for pages per model
-
-
+//Edit Me:
+      //Page ID per Model
       const v0pages = new Array("0", "info", "verifytemp", "verifyheater", "v0motor", "xyendstop", "v0homing", "v0endstop", "pid", "v0bedscrews", "initial", "finish");
       const v1pages = new Array("0", "info", "verifytemp", "verifyheater", "v1motor", "xyendstop", "v1homing",  "bedlocating" ,"point00", "zendstop",  "probecheck", "pid", "ztilt", "initial", "finish" );
       const v2pages = new Array("0", "info", "verifytemp", "verifyheater", "v2motor", "xyendstop", "v2homing", "bedlocating", "point00", "zendstop", "probecheck", "pid", "qgl", "initial", "finish" );
       const vswpages = new Array("0", "info", "verifytemp", "verifyheater", "vswmotor", "5");
    
+
+      //Page names per Model
       const v0pagename = new Array("Start", "Information", "Verify Temperatures", "Verify Heaters", "Motor Checks", "XY Endstop Check", "Homing Check", "Z-Endstop", "PID Tuning", "Bed Leveling", "Initial Setup", "Finish Line" );
       const v2pagename = new Array("Start", "Information", "Verify Temperatures", "Verify Heaters", "Motor Checks", "XY Endstop Check", "Homing Check", "Bed Locating", "0 Point", "Z Endstop", "Probe Check", "PID Tuning", "Quad Gantry Level", "Initial Setup", "Finish Line" );
       const v1pagename = new Array("Start", "Information", "Verify Temperatures", "Verify Heaters", "Motor Checks", "XY Endstop Check", "Homing Check", "Bed Locating", "0 Point", "Z Endstop", "Probe Check", "PID Tuning", "Z-Tilt", "Initial Setup", "Finish Line" );
       const vswpagename = new Array("Start", "Information", "Verify Temperatures", "Verify Heaters", "Motor Checks", "XY Endstop Check", "Homing Check", "Z-Endstop", "PID Tuning", "Bed Screw", "Initial Setup", "Finish Line" );
-    
-   
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ///// DON'T EDIT BELOW HERE /////    
+let params = new URLSearchParams(window.location.search);
+let modelparam = params.get('model');
+let interfaceparam = params.get("interface");
+var currentstep = parseInt(params.get("step")); 
+let lastpage = currentstep - 1;
+//Custom Variables  
 
 //check current url params and act accordingly
 function checkstatus() { 
@@ -164,13 +181,14 @@ function sidebar () {
   $( ".nav-list" ).empty();
   var step = 0;
 
-  $( ".nav-list" ).append("<li><a href="+"https://docs.vorondesign.com/"+">Back to the Docs</a></li><br>");
+  $( ".nav-list" ).append("<li><a href="+"/"+">Back to the Docs</a></li><br>");
+  $( ".nav-list" ).append("<li><a href="+"/build/startup"+">Back to the Model Selection</a></li><br>");
   $( ".nav-list" ).append("<h2 class=" + "'" + "whitetext" +"'" + "color=red;>Table of Contents:</h2>");
 
   if (modelparam == "v0") 
   $.each(v0pages, function(key, page){
       $( ".nav-list" ).append("<li>"+"<a href="+"?model=v0&step="+step+""+">"+v0pagename[step]+"</a>"+"</li>");
-      step++
+      step++ 
   }) 
   else if (modelparam == "v2")
   $.each(v2pages, function(key, page){
@@ -187,5 +205,16 @@ function sidebar () {
     $( ".nav-list" ).append("<li>"+"<a href="+"?model=vsw&step="+step+""+">"+vswpagename[step]+"</a>"+"</li>");
     step++
   })
+
+
+
+  // highlight current step
+    var highlightstep = parseInt(params.get("step")); 
+    highlightstep += 6;
+    selector = "ul li:nth-child("+ highlightstep +")"
+    $( selector ).prepend( "&#8594; " );
+    $( selector ).css("font-weight", "bold");
+    $( selector ).css("font-style", "oblique");
+   
 }
 

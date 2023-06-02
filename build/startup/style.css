@@ -218,3 +218,7 @@ div.alert code,h2 code{
     padding-left: 0;
     margin-right: 0.75rem;
 }
+
+.highlighted {
+    color: green;
+}
