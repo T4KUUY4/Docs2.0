@@ -220,6 +220,34 @@ After the `BED_SCREWS_ADJUST` command has been completed rerun the `Z_ENDSTOP_CA
 
 </div>
 
+
+<div class="defaulthide" id="v000" markdown="1">
+## Define 0,0 Point
+
+The homing position is not at the typical location of 0,0 but at the maximum travel location.  The actual numbers vary by printer build size.
+
+Depending on bed location, the positional parameters may need to be adjusted to re-locate the 0,0 point.
+
+1. Start by re-running `G28 X Y` to home X and Y.  After this, the nozzle will be at the maximum X,Y as defined by *position_max* under *[stepper_x]* and *[stepper_y]*. 
+2. Using the OctoPrint or Mainsail controls, move the nozzle to the front left corner of the bed.
+3. If the left corner of the bed cannot be reached within 3-5mm, the bed location needs to be physically adjusted (if possible). Move the bed on the extrusions or move the extrusions to get the bed location within range.
+	* If questionable, turn off motors and attempt to move the gantry by hand to see if the front left corner can physically be reached by the nozzle.
+4. Once the nozzle is close to the front left corner of the bed but still on the bed, send an `M114` command to retrieve the current location.
+	* *Note: Due to other tolerances, it is usually not recommended to have the 0,0 exactly on the corner of the bed or build surface. Spec bed sizes are always slightly larger than the defined print volume so print volume loss will be minimal.*
+
+If X and Y offsets are less than 1mm and 0,0 is over the bed, nothing needs to be changed.
+
+If X and Y offsets are within 5mm or 0,0 is past the bed, the *position_max* values should be adjusted to change where the 0,0 point is computed.  If the 0,0 is over the bed, the distance from the home point to the front left (*position_max*) must be increased.  If the 0,0 is past the bed, the distance must be decreased. The amount is determined by the output of the `M114` command. Update *position_max* and *position_endstop* for both *[stepper_x]* and *[stepper_y]* as follows:
+
+* For X: New = Current - Get Position X (M114) Result
+* For Y: New = Current - Get Position Y (M114) Result
+
+*If the Z endstop pin location has been previously defined, be sure to re-follow the process to set the Z endstop pin location (if applicable).*
+
+If anything is updated in the printer configuration file, save the file and restart Klipper using `FIRMWARE_RESTART`.
+
+</div>
+
 <!-- V0 END-->
 <!-- V1 START-->
 <div class="defaulthide" id="v1motor" markdown="1">

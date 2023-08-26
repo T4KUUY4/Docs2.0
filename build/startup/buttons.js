@@ -6,14 +6,14 @@
 
 //Edit Me:
       //Page ID per Model
-      const v0pages = new Array("0", "info", "verifytemp", "verifyheater", "v0motor", "xyendstop", "v0homing", "v0endstop", "pid", "v0bedscrews", "initial", "finish");
+      const v0pages = new Array("0", "info", "verifytemp", "verifyheater", "v0motor", "xyendstop", "v0homing", "v000", "v0endstop", "pid", "v0bedscrews", "initial", "finish");
       const v1pages = new Array("0", "info", "verifytemp", "verifyheater", "v1motor", "xyendstop", "v1homing",  "bedlocating" ,"point00", "zendstop",  "probecheck", "pid", "ztilt", "initial", "finish" );
       const v2pages = new Array("0", "info", "verifytemp", "verifyheater", "v2motor", "xyendstop", "v2homing", "bedlocating", "point00", "zendstop", "probecheck", "pid", "qgl", "initial", "finish" );
       const vswpages = new Array("0", "info", "verifytemp", "verifyheater", "vswmotor", "5");
    
 
       //Page names per Model
-      const v0pagename = new Array("Start", "Information", "Verify Temperatures", "Verify Heaters", "Motor Checks", "XY Endstop Check", "Homing Check", "Z-Endstop", "PID Tuning", "Bed Leveling", "Initial Setup", "Finish Line" );
+      const v0pagename = new Array("Start", "Information", "Verify Temperatures", "Verify Heaters", "Motor Checks", "XY Endstop Check", "Homing Check", "0 Point", "Z-Endstop", "PID Tuning", "Bed Leveling", "Initial Setup", "Finish Line" );
       const v2pagename = new Array("Start", "Information", "Verify Temperatures", "Verify Heaters", "Motor Checks", "XY Endstop Check", "Homing Check", "Bed Locating", "0 Point", "Z Endstop", "Probe Check", "PID Tuning", "Quad Gantry Level", "Initial Setup", "Finish Line" );
       const v1pagename = new Array("Start", "Information", "Verify Temperatures", "Verify Heaters", "Motor Checks", "XY Endstop Check", "Homing Check", "Bed Locating", "0 Point", "Z Endstop", "Probe Check", "PID Tuning", "Z-Tilt", "Initial Setup", "Finish Line" );
       const vswpagename = new Array("Start", "Information", "Verify Temperatures", "Verify Heaters", "Motor Checks", "XY Endstop Check", "Homing Check", "Z-Endstop", "PID Tuning", "Bed Screw", "Initial Setup", "Finish Line" );
